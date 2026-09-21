@@ -1,3 +1,120 @@
+/* changes from Ashley Rivera Ruiz 9/20/2026 */
+
+.topstuff{
+    z-index: 999;
+    background-color: white;
+    position:fixed;
+    width:100%;
+}
+
+/* about */
+.aboutImage{
+    background-image: url(/img/about.png);
+    background-size: cover;
+    position: absolute;
+    left: 0;
+    right: 0;
+    z-index: 2;
+    display: block;
+    height:450px;
+}
+.aboutContent{
+    position: absolute;
+    height:450px;
+    backdrop-filter: blur(5px);
+    background-color: #ffffff52;
+    z-index: 100;
+    left: 0;
+    right: 0;
+    padding: 50px 0;
+}
+.aboutText{
+    background-color: #ffffffc4;
+    padding: 20px 20vw;
+    max-height: 350px;
+    overflow: auto;
+
+}
+.about{
+    height:450px;
+    z-index: 1;
+    position: static;
+}
+
+
+/* menu */
+.item{
+    border: 1.5px solid rgba(0, 0, 0, 0.228);
+    border-radius: 15px;
+    padding: 15px;
+    position: relative;
+    height: 150px;
+    background-color: white;
+    min-width: 350px;
+}
+.item h4{
+    line-height: 0.5em;;
+}
+.item p {
+    width: 50%;
+    overflow: auto;
+}
+.price{
+    bottom: 0px;
+    left: 15px;
+    position: absolute;
+}
+.item img{
+    position: absolute;
+    right:0;
+    top:0;
+    height:100%;
+    border-radius: 0 15px 15px 0;
+}
+.item:hover{
+    filter: brightness(0.95);
+    border-color:black;
+}
+.menuitems{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    padding-top: 20px;
+}
+
+/* Your Order */
+.order{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding: 0 30px;
+}
+.orderItem{
+    text-align: left;
+}
+.orderPrice{
+    text-align: right;
+}
+body{
+    display: grid;
+    grid-area: 
+    'notbottom'
+    'bottom'
+    ;
+    height:100vh;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 /* W3.CSS 5.01 March 11 2026 by Jan Egil and Borge Refsnes */
 /* CSS code copied from w3schools stylesheet */
 html {box-sizing:border-box}
