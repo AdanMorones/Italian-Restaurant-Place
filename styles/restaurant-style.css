@@ -9,7 +9,7 @@
 
 /* about */
 .aboutImage{
-    background-image: url(/img/about.png);
+    background-image: url("/img/about.png");
     background-size: cover;
     position: absolute;
     left: 0;
