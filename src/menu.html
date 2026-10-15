@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta charset="UTF-8">
+<title>Mamma Mia</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="/styles/restaurant-style.css">
+<script src="/script/restaurant.js" defer></script>
+
+<style>
+body {font-family:"Times New Roman", serif}
+h1,h2,h3,h4,h5,h6 {font-family:serif;letter-spacing:5px}
+</style>
+
+<body>
+
+<div class="notbottom">
+
+<!-- Navbar (Sits on top) -->
+<div class="w3-flex w3-white w3-wide w3-padding w3-card topstuff">
+  <a href="#home" class="w3-button">Mamma Mia</a>
+
+  <nav class="w3-flex w3-hide-small" style="margin-left:auto">
+    <a href="#about" class="w3-button">About</a>
+    <a href="#menu" class="w3-button">Menu</a>
+    <a href="#menu" class="w3-button">Your Order</a>
+    <a href="#contact" class="w3-button">Contact</a>
+    <a href="" class="w3-button">Log In</a>
+  </nav>
+</div>
+
+<!-- Header -->
+<header class="w3-display-container">
+  <img src="img_catering.jpg"
+  style="width:100%" alt="Catering">
+  <div class="w3-display-bottomleft w3-padding w3-text-white w3-opacity-min">
+    <h1>Le Catering</h1>
+  </div>
+</header>
+
+<!-- Page Content -->
+<main id="home" class="w3-content" style="max-width:1000px">
+
+
+<div class="w3-padding-large">
+  <h1 class="w3-center">Our Menu</h1>
+  <div class="menuitems">
+    <div class="item" onclick="addToOrder()"> <!-- would pass in id of item?-->
+      <h4 id="testTitle"></h4>
+      <p id="testDesc"></p>
+      <p class="price" id="testPrice"></p>
+      <img src="/img/pasta.jpg">
+    </div>
+    <div class="item">
+      <h4>Chicken Alfredo</h4>
+      <p>Grilled chicken served with pasta in a creamy Alfredo sauce.</p>
+      <p class="price">$16.99</p>
+      <img src="">
+    </div>
+
+    <div class="item">
+      <h4>Lasagna</h4>
+      <p>Layers of pasta, meat sauce, ricotta cheese, and mozzarella.</p>
+      <p class="price">$14.99</p>
+      <img src="">
+    </div>
+
+    <div class="item">
+      <h4>Fettuccine Alfredo</h4>
+      <p>Fettuccine pasta covered in a creamy Alfredo sauce.</p>
+      <p class="price">$13.99</p>
+      <img src="">
+    </div>
+
+    <div class="item">
+      <h4>Chicken Parmesan</h4>
+      <p>Breaded chicken topped with marinara sauce and melted mozzarella cheese.</p>
+      <p class="price">$17.99</p>
+      <img src="">
+    </div>
+
+    <div class="item">
+      <h4>Margherita Pizza</h4>
+      <p>Pizza topped with tomato sauce, fresh mozzarella, and basil.</p>
+      <p class="price">$12.99</p>
+      <img src="">
+    </div>
+
+    <div class="item">
+      <h4>Cheese Ravioli</h4>
+      <p>Cheese-filled ravioli served with homemade marinara sauce.</p>
+      <p class="price">$14.99</p>
+      <img src="">
+    </div>
+
+    <div class="item">
+      <h4>Penne alla Vodka</h4>
+      <p>Penne pasta served in a creamy tomato vodka sauce.</p>
+      <p class="price">$15.99</p>
+      <img src="">
+    </div>
+  </div>
+
+</div>
+
+</main>
+</div>
+
+<!-- Footer -->
+<footer class="w3-center w3-light-grey w3-padding-32 bottom">
+<p>
+Powered by
+<a href="https://www.w3schools.com/w3css/default.asp"
+title="W3.CSS" target="_blank">w3.css</a>
+</p>
+</footer>
+
+</body>
+</html>
