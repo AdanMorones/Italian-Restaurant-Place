@@ -20,11 +20,19 @@ h1,h2,h3,h4,h5,h6 {font-family:serif;letter-spacing:5px}
   <a href="/index.html" class="w3-button">Mamma Mia</a>
 
   <nav class="w3-flex w3-hide-small" style="margin-left:auto">
+<<<<<<< HEAD
     <a href="../index.html#about" class="w3-button">About</a>
     <a href="menu.html" class="w3-button">Menu</a>
     <a href="your-order.html" class="w3-button">Your Order</a>
     <a href="../index.html#contact" class="w3-button">Contact</a>
     <a href="login.html" class="w3-button">Log In</a>
+=======
+    <a href="/index.html#about" class="w3-button">About</a>
+    <a href="/index.html#menu" class="w3-button">Menu</a>
+    <a href="#menu" class="w3-button">Your Order</a>
+    <a href="#contact" class="w3-button">Contact</a>
+    <a href="/src/login.html" class="w3-button">Log In</a>
+>>>>>>> 617737e80a0822c67d4b706e0cdee23af274348d
   </nav>
 </div>
 
@@ -53,7 +61,9 @@ type="text" placeholder="Username" required name="Name">
 
 <p>
 <input class="w3-input w3-padding-16"
-type="password" placeholder="Password" required name="Password">
+type="password" placeholder="Password"
+required name="Password" title="At least 1 digit, 1 uppercase, 1 lowercase, 1 special character, and minimum 8 characters long"
+pattern="(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&]).{8,}">
 </p>
 
 <p>
@@ -62,8 +72,8 @@ type="email" placeholder="Email" required name="Email">
 </p>
 
 <p>
-<button class="w3-button w3-light-grey w3-section"
-type="submit">Register</button>
+<input class="w3-button w3-light-grey w3-section"
+type="submit" value="Register">
 </p>
 
 </form>
