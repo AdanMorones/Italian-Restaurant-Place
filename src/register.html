@@ -93,7 +93,7 @@ title="W3.CSS" target="_blank">w3.css</a>
       const username = document.getElementById('username').value.trim();
       const password = document.getElementById('password').value;
 
-      const res = await fetch('script/auth.php', {
+      const res = await fetch('../script/auth.php', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ action: 'register', username, password })

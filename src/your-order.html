@@ -1,89 +1,201 @@
 <!DOCTYPE html>
 <html lang="en">
-<meta charset="UTF-8">
-<title>Mamma Mia</title>
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<link rel="stylesheet" href="/styles/restaurant-style.css">
-<script src="/script/restaurant.js" defer></script>
+<head>
+  <meta charset="UTF-8">
+  <title>Mamma Mia - Your Order</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="stylesheet" href="../styles/restaurant-style.css">
+  <script src="../script/restaurant.js" defer></script>
 
-<style>
-body {font-family:"Times New Roman", serif}
-h1,h2,h3,h4,h5,h6 {font-family:serif;letter-spacing:5px}
-</style>
+  <style>
+    body { font-family: "Times New Roman", serif; }
+    h1,h2,h3,h4,h5,h6 { font-family: serif; letter-spacing: 5px; }
+    .menu-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 0;
+      border-bottom: 1px solid #eee;
+    }
+    .order-box {
+      background: #f9f9f9;
+      padding: 20px;
+      border: 1px solid #ddd;
+      margin-top: 20px;
+    }
+  </style>
+</head>
 
 <body>
 
 <div class="notbottom">
 
-<!-- Navbar (Sits on top) -->
-<div class="w3-flex w3-white w3-wide w3-padding w3-card topstuff">
-  <a href="../index.html" class="w3-button">Mamma Mia</a>
+  <!-- Navbar -->
+  <div class="w3-flex w3-white w3-wide w3-padding w3-card topstuff">
+    <a href="index.html" class="w3-button">Mamma Mia</a>
 
-  <nav class="w3-flex w3-hide-small" style="margin-left:auto">
-    <a href="../index.html#about" class="w3-button">About</a>
-    <a href="menu.html" class="w3-button">Menu</a>
-    <a href="your-order.html" class="w3-button">Your Order</a>
-    <a href="../index.html#contact" class="w3-button">Contact</a>
-    <a href="login.html" class="w3-button">Log In</a>
-  </nav>
-</div>
-
-<!-- Header -->
-<header class="w3-display-container">
-  <img src="img_catering.jpg"
-  style="width:100%" alt="Catering">
-  <div class="w3-display-bottomleft w3-padding w3-text-white w3-opacity-min">
-    <h1>Le Catering</h1>
+    <nav class="w3-flex w3-hide-small" style="margin-left:auto">
+      <a href="index.html#about" class="w3-button">About</a>
+      <a href="menu.html" class="w3-button">Menu</a>
+      <a href="your-order.html" class="w3-button">Your Order</a>
+      <a href="index.html#contact" class="w3-button">Contact</a>
+      <a href="login.html" class="w3-button">Log In</a>
+    </nav>
   </div>
-</header>
 
-<!-- Page Content -->
-<main id="home" class="w3-content" style="max-width:1000px">
+  <!-- Header -->
+  <header class="w3-display-container">
+    <img src="../img_catering.jpg" style="width:100%" alt="Catering" onerror="this.src='img_catering.jpg'">
+    <div class="w3-display-bottomleft w3-padding w3-text-white w3-opacity-min">
+      <h1>Le Catering</h1>
+    </div>
+  </header>
 
-<!-- Your Order -->
-<section id="about" class="w3-padding-64">
-<h1 class="w3-center">Italian Menu</h1>
-<hr>
+  <!-- Page Content -->
+  <main id="home" class="w3-content" style="max-width:1000px">
+    <section id="about" class="w3-padding-64">
+      <h1 class="w3-center">Italian Menu</h1>
+      <hr>
 
-<div class="order">
-    <p class="orderItem" id="testTitle"></p>
-    <p class="orderPrice" id="testPrice"></p> <!--not sure why this is not working-->
+      <!-- Menu Items List with Add Buttons -->
+      <div class="order">
+        <div class="menu-row">
+          <span><b>Chicken Alfredo</b> - $16.99</span>
+          <button class="w3-button w3-small w3-black" onclick="addToCart('Chicken Alfredo', 16.99)">+ Add</button>
+        </div>
+        <div class="menu-row">
+          <span><b>Lasagna</b> - $14.99</span>
+          <button class="w3-button w3-small w3-black" onclick="addToCart('Lasagna', 14.99)">+ Add</button>
+        </div>
+        <div class="menu-row">
+          <span><b>Fettuccine Alfredo</b> - $13.99</span>
+          <button class="w3-button w3-small w3-black" onclick="addToCart('Fettuccine Alfredo', 13.99)">+ Add</button>
+        </div>
+        <div class="menu-row">
+          <span><b>Chicken Parmesan</b> - $17.99</span>
+          <button class="w3-button w3-small w3-black" onclick="addToCart('Chicken Parmesan', 17.99)">+ Add</button>
+        </div>
+        <div class="menu-row">
+          <span><b>Margherita Pizza</b> - $12.99</span>
+          <button class="w3-button w3-small w3-black" onclick="addToCart('Margherita Pizza', 12.99)">+ Add</button>
+        </div>
+        <div class="menu-row">
+          <span><b>Penne alla Vodka</b> - $15.99</span>
+          <button class="w3-button w3-small w3-black" onclick="addToCart('Penne alla Vodka', 15.99)">+ Add</button>
+        </div>
+      </div>
 
-    <p class="orderItem">Chicken Alfredo</p>
-    <p class="orderPrice">$16.99</p>
+      <!-- Live Cart & Checkout Section -->
+      <div class="order-box">
+        <h3>Selected Items</h3>
+        <ul id="cartDisplay" class="w3-ul">
+          <li class="w3-text-grey">Your order is empty. Click "+ Add" on items above.</li>
+        </ul>
+        <h4 style="margin-top:15px;">Total: <span id="cartTotal">$0.00</span></h4>
 
-    <p class="orderItem">Lasagna</p>
-    <p class="orderPrice">$14.99</p>
+        <div id="orderStatus" class="w3-panel" style="display:none; padding:10px;"></div>
 
-    <p class="orderItem">Fettuccine Alfredo</p>
-    <p class="orderPrice">$13.99</p>
+        <button id="checkoutBtn" onclick="submitOrder()" class="w3-button w3-black w3-section">Proceed to Payment</button>
+      </div>
 
-    <p class="orderItem">Chicken Parmesan</p>
-    <p class="orderPrice">$17.99</p>
-
-    <p class="orderItem">Margherita Pizza</p>
-    <p class="orderPrice">$12.99</p>
-
-    <p class="orderItem">Penne alla Vodka</p>
-    <p class="orderPrice">$15.99</p>
-</div>
-
-<hr>
-<button class="w3-button w3-light-grey w3-section">Proceed to Payment</button>
-
-
-</section>
-</main>
+    </section>
+  </main>
 </div>
 
 <!-- Footer -->
 <footer class="w3-center w3-light-grey w3-padding-32 bottom">
-<p>
-Powered by
-<a href="https://www.w3schools.com/w3css/default.asp"
-title="W3.CSS" target="_blank">w3.css</a>
-</p>
+  <p>
+    Powered by
+    <a href="https://www.w3schools.com/w3css/default.asp" title="W3.CSS" target="_blank">w3.css</a>
+  </p>
 </footer>
+
+<!-- Order Handling Script -->
+<script>
+  let orderItems = [];
+
+  function addToCart(name, price) {
+    orderItems.push({ name, price });
+    updateCartUI();
+  }
+
+  function removeFromCart(index) {
+    orderItems.splice(index, 1);
+    updateCartUI();
+  }
+
+  function updateCartUI() {
+    const list = document.getElementById('cartDisplay');
+    const totalEl = document.getElementById('cartTotal');
+
+    if (orderItems.length === 0) {
+      list.innerHTML = '<li class="w3-text-grey">Your order is empty. Click "+ Add" on items above.</li>';
+      totalEl.innerText = '$0.00';
+      return;
+    }
+
+    list.innerHTML = orderItems.map((item, idx) => `
+      <li style="display:flex; justify-content:space-between; align-items:center;">
+        <span>${item.name} - $${item.price.toFixed(2)}</span>
+        <button class="w3-button w3-tiny w3-red" onclick="removeFromCart(${idx})">Remove</button>
+      </li>
+    `).join('');
+
+    const total = orderItems.reduce((sum, item) => sum + item.price, 0);
+    totalEl.innerText = `$${total.toFixed(2)}`;
+  }
+
+  async function submitOrder() {
+    const statusBox = document.getElementById('orderStatus');
+
+    if (orderItems.length === 0) {
+      statusBox.style.display = 'block';
+      statusBox.className = 'w3-panel w3-amber';
+      statusBox.innerText = 'Please select at least one item before proceeding.';
+      return;
+    }
+
+    const itemsSummary = orderItems.map(i => i.name).join(', ');
+    const totalAmount = orderItems.reduce((sum, i) => sum + i.price, 0);
+
+    try {
+      // Points to script/place_order.php (up one level from src/)
+      const res = await fetch('../script/place_order.php', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          items_summary: itemsSummary,
+          total_amount: totalAmount
+        })
+      });
+
+      const data = await res.json();
+      statusBox.style.display = 'block';
+
+      if (data.status === 'success') {
+        statusBox.className = 'w3-panel w3-green';
+        statusBox.innerText = `${data.message} (Order #${data.order_id})`;
+        orderItems = [];
+        updateCartUI();
+      } else {
+        statusBox.className = 'w3-panel w3-red';
+        statusBox.innerText = data.message;
+
+        // If user is not signed in, route them to login
+        if (data.message.toLowerCase().includes('logged in')) {
+          setTimeout(() => {
+            window.location.href = 'login.html';
+          }, 1500);
+        }
+      }
+    } catch (err) {
+      statusBox.style.display = 'block';
+      statusBox.className = 'w3-panel w3-red';
+      statusBox.innerText = 'Could not reach server. Please check your connection or MAMP status.';
+    }
+  }
+</script>
 
 </body>
 </html>
