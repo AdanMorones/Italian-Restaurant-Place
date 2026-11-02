@@ -1,15 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
-<meta charset="UTF-8">
-<title>Mamma Mia</title>
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<link rel="stylesheet" href="/styles/restaurant-style.css">
-<script src="/script/restaurant.js" defer></script>
+<head>
+  <meta charset="UTF-8">
+  <title>Mamma Mia - Register</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="stylesheet" href="../styles/restaurant-style.css">
+  <script src="../script/restaurant.js" defer></script>
 
-<style>
-body {font-family:"Times New Roman", serif}
-h1,h2,h3,h4,h5,h6 {font-family:serif;letter-spacing:5px}
-</style>
+  <style>
+    body { font-family: "Times New Roman", serif; }
+    h1,h2,h3,h4,h5,h6 { font-family: serif; letter-spacing: 5px; }
+  </style>
+</head>
 
 <body>
 
@@ -17,7 +20,7 @@ h1,h2,h3,h4,h5,h6 {font-family:serif;letter-spacing:5px}
 
 <!-- Navbar (Sits on top) -->
 <div class="w3-flex w3-white w3-wide w3-padding w3-card topstuff">
-  <a href="/index.html" class="w3-button">Mamma Mia</a>
+  <a href="../index.html" class="w3-button">Mamma Mia</a>
 
   <nav class="w3-flex w3-hide-small" style="margin-left:auto">
     <a href="../index.html#about" class="w3-button">About</a>
@@ -30,8 +33,7 @@ h1,h2,h3,h4,h5,h6 {font-family:serif;letter-spacing:5px}
 
 <!-- Header -->
 <header class="w3-display-container">
-  <img src="img_catering.jpg"
-  style="width:100%" alt="Catering">
+  <img src="../img/catering.jpeg" style="width:100%" alt="Catering" onerror="this.src='img_catering.jpg'">
   <div class="w3-display-bottomleft w3-padding w3-text-white w3-opacity-min">
     <h1>Le Catering</h1>
   </div>
@@ -40,36 +42,51 @@ h1,h2,h3,h4,h5,h6 {font-family:serif;letter-spacing:5px}
 <!-- Page Content -->
 <main id="home" class="w3-content" style="max-width:1000px">
 
-<!-- Register -->
+<!-- Register Section -->
 <section id="about" class="w3-padding-64">
-<h1 class="w3-center">Register</h1>
-<hr>
+  <h1 class="w3-center">Register</h1>
+  <hr>
 
-<form action="/action_page.php" target="_blank">
-<p>
-<input class="w3-input w3-padding-16"
-type="text" placeholder="Username" required name="Name">
-</p>
+  <!-- Added id="registerForm" so the script can target it -->
+  <form id="registerForm">
+    <p>
+      <input class="w3-input w3-padding-16"
+             type="text" 
+             id="username" 
+             placeholder="Username" 
+             required 
+             name="username">
+    </p>
 
-<p>
-<input class="w3-input w3-padding-16"
-type="password" placeholder="Password"
-required name="Password" title="At least 1 digit, 1 uppercase, 1 lowercase, 1 special character, and minimum 8 characters long"
-pattern="(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&]).{8,}">
-</p>
+    <p>
+      <input class="w3-input w3-padding-16"
+             type="email" 
+             id="email" 
+             placeholder="Email" 
+             required 
+             name="email">
+    </p>
 
-<p>
-<input class="w3-input w3-padding-16"
-type="email" placeholder="Email" required name="Email">
-</p>
+    <p>
+      <input class="w3-input w3-padding-16"
+             type="password" 
+             id="password" 
+             placeholder="Password"
+             required 
+             name="password" 
+             title="At least 1 digit, 1 uppercase, 1 lowercase, 1 special character, and minimum 8 characters long"
+             pattern="(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&]).{8,}">
+    </p>
 
-<p>
-<input class="w3-button w3-light-grey w3-section"
-type="submit" value="Register">
-</p>
+    <p>
+      <input class="w3-button w3-light-grey w3-section"
+             type="submit" 
+             value="Register">
+    </p>
+  </form>
 
-</form>
-
+  <!-- Added response message display container -->
+  <p id="responseMsg" class="w3-large w3-center" style="font-weight: bold;"></p>
 
 </section>
 </main>
@@ -77,22 +94,24 @@ type="submit" value="Register">
 
 <!-- Footer -->
 <footer class="w3-center w3-light-grey w3-padding-32 bottom">
-<p>
-Powered by
-<a href="https://www.w3schools.com/w3css/default.asp"
-title="W3.CSS" target="_blank">w3.css</a>
-</p>
+  <p>
+    Powered by
+    <a href="https://www.w3schools.com/w3css/default.asp" title="W3.CSS" target="_blank">w3.css</a>
+  </p>
 </footer>
+
+<!-- Script Handling Backend Submission -->
 <script>
-    const form = document.getElementById('registerForm');
-    const msg = document.getElementById('responseMsg');
+  const form = document.getElementById('registerForm');
+  const msg = document.getElementById('responseMsg');
 
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
 
-      const username = document.getElementById('username').value.trim();
-      const password = document.getElementById('password').value;
+    const username = document.getElementById('username').value.trim();
+    const password = document.getElementById('password').value;
 
+    try {
       const res = await fetch('../script/auth.php', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -110,7 +129,12 @@ title="W3.CSS" target="_blank">w3.css</a>
       } else {
         msg.style.color = 'red';
       }
-    });
-  </script>
+    } catch (err) {
+      msg.style.color = 'red';
+      msg.textContent = 'Server error: could not connect to auth service.';
+    }
+  });
+</script>
+
 </body>
 </html>
