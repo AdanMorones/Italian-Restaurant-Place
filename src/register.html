@@ -83,6 +83,34 @@ Powered by
 title="W3.CSS" target="_blank">w3.css</a>
 </p>
 </footer>
+<script>
+    const form = document.getElementById('registerForm');
+    const msg = document.getElementById('responseMsg');
 
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const username = document.getElementById('username').value.trim();
+      const password = document.getElementById('password').value;
+
+      const res = await fetch('script/auth.php', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ action: 'register', username, password })
+      });
+
+      const data = await res.json();
+      msg.textContent = data.message;
+
+      if (data.status === 'success') {
+        msg.style.color = 'green';
+        setTimeout(() => {
+          window.location.href = 'login.html';
+        }, 1200);
+      } else {
+        msg.style.color = 'red';
+      }
+    });
+  </script>
 </body>
 </html>

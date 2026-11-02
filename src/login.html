@@ -63,17 +63,11 @@ type="submit">Log in</button>
 
 </form>
 
-<<<<<<< HEAD
 <p>Don't have an account yet?</p>
       <!-- Direct relative link to your registration page inside src/ -->
       <a href="register.html" class="w3-button w3-light-grey w3-border">
         Create an Account
       </a>
-=======
-<p>No account yet?</p>
-<a class="w3-button w3-light-grey w3-section" href="/src/register.html">Register</a>
-
->>>>>>> 617737e80a0822c67d4b706e0cdee23af274348d
 
 
 </section>
@@ -88,6 +82,35 @@ Powered by
 title="W3.CSS" target="_blank">w3.css</a>
 </p>
 </footer>
+<script>
+    const form = document.getElementById('loginForm');
+    const msg = document.getElementById('responseMsg');
 
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const username = document.getElementById('username').value.trim();
+      const password = document.getElementById('password').value;
+
+      // Note: path points to script/auth.php since it is in your script folder
+      const res = await fetch('script/auth.php', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ action: 'login', username, password })
+      });
+
+      const data = await res.json();
+      msg.textContent = data.message;
+
+      if (data.status === 'success') {
+        msg.style.color = 'green';
+        setTimeout(() => {
+          window.location.href = 'your-order.html';
+        }, 1000);
+      } else {
+        msg.style.color = 'red';
+      }
+    });
+  </script>
 </body>
 </html>
