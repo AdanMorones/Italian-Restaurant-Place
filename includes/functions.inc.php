@@ -67,3 +67,82 @@ function loginUser($conn, $username, $pwd){
         exit();
     }
 }
+
+function loggedIn(){
+    session_start();
+    if(isset($_SESSION["uid"])){
+        return true;
+    }
+    else{
+        return false;
+    }
+}
+
+function addToOrder($conn, $itemID, $userID){
+    $orderNum = 0;
+    $orderStatus = "incomplete";
+    $sql = "INSERT INTO orders (userID, itemID, order_number, order_status) VALUES (?, ?, ?, ?);";
+    $stmt = mysqli_stmt_init($conn);
+
+    if(!mysqli_stmt_prepare($stmt, $sql)){
+        header ("location: ../src/menu.php?error=stmtfailed");
+        exit();
+    }
+
+    mysqli_stmt_bind_param($stmt, "ssss", $userID, $itemID, $orderNum, $orderStatus);
+    mysqli_stmt_execute($stmt);
+    mysqli_stmt_close($stmt);
+    
+    header ("location: ../src/menu.php?error=none");
+    exit();
+}
+
+function completeOrder($conn, $userID){
+    $orderNum = generateOrderNum($conn);
+    $orderStatus = "complete";
+    $sql = "UPDATE orders SET order_number = (?) WHERE userID = $userID AND order_number = 0;";
+    $stmt = mysqli_stmt_init($conn);
+
+    if(!mysqli_stmt_prepare($stmt, $sql)){
+        header ("location: ../src/your-order.php?error=stmtfailed");
+        exit();
+    }
+
+    mysqli_stmt_bind_param($stmt, "s", $orderNum);
+    mysqli_stmt_execute($stmt);
+    mysqli_stmt_close($stmt);
+
+    $sql = "UPDATE orders SET order_status = (?) WHERE userID = $userID AND order_status = 'incomplete';";
+    $stmt = mysqli_stmt_init($conn);
+
+    if(!mysqli_stmt_prepare($stmt, $sql)){
+        header ("location: ../src/your-order.php?error=stmtfailed");
+        exit();
+    }
+
+    mysqli_stmt_bind_param($stmt, "s", $orderStatus);
+    mysqli_stmt_execute($stmt);
+    mysqli_stmt_close($stmt);
+
+
+    header ("location: ../src/your-order.php?error=" . $orderNum);
+    exit();
+}
+
+function generateOrderNum($conn){
+    $orderNum = 0;
+    $sql = "SELECT order_number FROM orders;";
+    $result = mysqli_query($conn, $sql);
+    $resultCheck = mysqli_num_rows($result);
+
+    if($resultCheck > 0) {
+        while($row = mysqli_fetch_assoc($result)){
+            if($orderNum < $row['order_number']){
+                $orderNum = $row['order_number'];
+            }
+        }
+    }
+
+    $orderNum += 1;
+    return $orderNum;
+}
