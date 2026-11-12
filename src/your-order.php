@@ -11,31 +11,49 @@
 <hr>
 
 <div class="order">
-    p class="orderItem" id="testTitle"></p>
-    <p class="orderPrice" id="testPrice"></p> <!--not sure why this is not working-->
 
-    <p class="orderItem">Chicken Alfredo</p>
-    <p class="orderPrice">$16.99</p>
 
-    <p class="orderItem">Lasagna</p>
-    <p class="orderPrice">$14.99</p>
+<?php
 
-    <p class="orderItem">Fettuccine Alfredo</p>
-    <p class="orderPrice">$13.99</p>
+require_once '../includes/db.inc.php';
 
-    <p class="orderItem">Chicken Parmesan</p>
-    <p class="orderPrice">$17.99</p>
+$sql = "SELECT * FROM orders INNER JOIN menu_items ON orders.itemID = menu_items.itemID WHERE userID = '$_SESSION[uid]' AND order_status = 'incomplete';";
+$result = mysqli_query($conn, $sql);
+$resultCheck = mysqli_num_rows($result);
+$total = 0;
 
-    <p class="orderItem">Margherita Pizza</p>
-    <p class="orderPrice">$12.99</p>
+if($resultCheck > 0) {
+    while($row = mysqli_fetch_assoc($result)){
+      echo "<p class='orderItem'>" . $row['itemName'] . "</p>";
+      echo "<p class='orderPrice'>$" . $row['itemPrice'] . "</p>";
+      $total += $row['itemPrice'];
+    }
+}
 
-    <p class="orderItem">Penne alla Vodka</p>
-    <p class="orderPrice">$15.99</p>
-</div>
+echo "</div>";
+echo "<hr>";
 
-<hr>
-<button class="w3-button w3-light-grey w3-section">Confirm Order</button>
+echo "<div class='order'>";
+echo "<p class='orderItem'>Total</p>";
+echo "<p class='orderPrice'>$" . $total . "</p>";
+echo "</div>";
 
+?>
+
+<form type='submit' action='../includes/place-order.inc.php' method='post'>
+<input type='submit' class='w3-button w3-light-grey' name='placeorder' value='Place Order'>
+</form>
+
+<?php
+  if (isset($_GET["error"])){
+    if($_GET["error"] == "stmtfailed"){
+      echo "<p class=errorText >Something went wrong.</p>";
+    }
+    else{
+      echo "<p class=errorText >Order placed successfully! Your order number is: " . $_GET['error'] . "</p>";
+    }
+  }
+?>
 
 </section>
 </main>
